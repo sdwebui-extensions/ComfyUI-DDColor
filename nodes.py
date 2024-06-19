@@ -45,6 +45,9 @@ class DDColor_Colorize:
         self.checkpoint = checkpoint
         self.checkpoint_folder = os.path.join(script_directory, f"checkpoints")
         self.checkpoint_path = os.path.join(script_directory, f"checkpoints/{checkpoint}")
+        if not os.path.exists(self.checkpoint_path) and os.path.exists("/stable-diffusion-cache/models/ddcolor_models"):
+            self.checkpoint_folder = "/stable-diffusion-cache/models/ddcolor_models"
+            self.checkpoint_path = os.path.join(self.checkpoint_folder, checkpoint)
 
         if not os.path.isfile(self.checkpoint_path):
             try:
